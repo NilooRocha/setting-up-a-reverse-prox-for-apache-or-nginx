@@ -66,10 +66,10 @@ Ora configuriamo il reverse proxy, inseriamo dentro queste configurazione:
 
 > Un [Header](https://developer.mozilla.org/en-US/docs/Glossary/HTTP_header) H  TTP è un campo di una richiesta o di una risposta HTTP che trasmette un contesto aggiuntivo e metadati sulla richiesta o sulla risposta. Ad esempio, un messaggio di richiesta può usare le intestazioni per indicare i formati multimediali preferiti, mentre una risposta può usare le intestazioni per indicare il formato multimediale del body restituito.
 
-Ora attiviamo il VirtualHost e riavviamo Apache per ricaricare la configurazione dei moduli.
+Ora attiviamo il VirtualHost e riavviamo Apache per ricaricare le configurazione dei moduli.
 
 ```sh
-sudo a2ensite Apache2Proxy.conf
+sudo a2ensite apache-reverse-proxy.conf
 ```
 
 ```sh
@@ -147,7 +147,7 @@ sudo ln -s /etc/nginx/sites-available/nginx-reverse-proxy.conf /etc/nginx/sites-
 sudo systemctl restart nginx
 ```
 
->lanciando il [secondo comando](https://explainshell.com/explain?cmd=sudo+ln+-s+%2Fetc%2Fnginx%2Fsites-available%2Freverse-proxy.conf+%2Fetc%2Fnginx%2Fsites-enabled%2Freverse-proxy.conf) utilizziamo il parametro *-s* che è un parametro del comando `[ln](https://man7.org/linux/man-pages/man1/ln.1.html) che crea un  **symbolic link** e non un **hard link**. I hard link condividono il numero di [inode](https://it.siteground.com/kb/cose-un-inode/), mentre i  symbolic link non lo condividono. Con i  symbolic link, se il file o la directory originale viene cancellato, l'informazione viene persa, mentre con gli hard link non è così. I hard link sono copie esatte del file, mentre i  symbolic link sono semplici puntatori o "shortcuts". E nel nostro esempio non abbiamo bisogno di una copia del .conf ma di una "shortcut".
+>lanciando il [secondo comando](https://explainshell.com/explain?cmd=sudo+ln+-s+%2Fetc%2Fnginx%2Fsites-available%2Freverse-proxy.conf+%2Fetc%2Fnginx%2Fsites-enabled%2Freverse-proxy.conf) utilizziamo il parametro `-s` che è un parametro del [comando](https://man7.org/linux/man-pages/man1/ln.1.html) `ln` che crea un  **symbolic link** e non un **hard link**. I hard link condividono il numero di [inode](https://it.siteground.com/kb/cose-un-inode/), mentre i  symbolic link no. Con i  symbolic link, se il file o la directory originale viene cancellato, l'informazione viene persa, mentre con gli hard link non è così. I hard link sono copie esatte del file, mentre i  symbolic link sono semplici puntatori o "shortcuts". E nel nostro esempio non abbiamo bisogno di una copia del .conf ma di una "shortcut".
 
 Per fine, fai la prova aprendo il browser o un request app (poostman, insomnia, ecc...) e fare una richiesta all'url specificato nella configurazione ([http://localhost/backend1](http://localhost/backend1) o [http://localhost/backend2](http://localhost/backend2) ), se tutto funziona si otterrà un *Success Response Code (200-299)*
 
