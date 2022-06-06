@@ -17,7 +17,7 @@ sudo apt-get update
 ```
 
 ```sh
-sudo apt-get install Apache2
+sudo apt-get install apache2
 ```
 
  Con Apache installato, per poter iniziare a configurare un reverse proxy dobbiamo abilitare alcuni moduli di Apache, di cui:
@@ -39,7 +39,7 @@ sudo a2enmod proxy_http
 Dopo aver abilitato i moduli, dobbiamo creare un virtualhost
 
 ```sh
-sudo vi /etc/Apache2/sites-available/apache-reverse-proxy.conf
+sudo vi /etc/apache2/sites-available/apache-reverse-proxy.conf
 ```
 
 > [Virtual host](https://httpd.Apache.org/docs/2.4/mod/core.html#virtualhost) è una direttiva di configurazione di Apache che consente di eseguire più di un sito web su un singolo server.
@@ -73,7 +73,7 @@ sudo a2ensite apache-reverse-proxy.conf
 ```
 
 ```sh
-sudo systemctl restart Apache2
+sudo systemctl restart apache2
 ```
 
 > `a2ensite` → è uno script che abilita il sito specificato (che contiene un blocco < VirtualHost > ) nella configurazione di Apache. Lo script non fa altro che lo [unlink](https://man7.org/linux/man-pages/man2/unlink.2.html#:~:text=DESCRIPTION%20top,is%20made%20available%20for%20reuse.) del file.conf all'interno di sites-enabled e crea un nuovo link con il .conf specificato.
